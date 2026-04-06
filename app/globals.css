@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f3f7f8;
+  --panel: #ffffff;
+  --ink: #10212b;
+  --ink-soft: #4f6470;
+  --line: #d9e4e8;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: var(--font-body);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 650px at 20% -20%, #b8f1e7 0%, transparent 45%),
+    radial-gradient(900px 500px at 100% 0%, #f5e2b7 0%, transparent 42%),
+    var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), sans-serif;
+}

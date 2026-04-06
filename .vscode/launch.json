@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Next.js",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "skipFiles": ["<node_internals>/**"],
+      "restart": true
+    },
+    {
+      "name": "Debug next.js (npm run dev)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/.bin/next",
+      "args": ["dev"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "teacher-tools-dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "forwardPorts": [3000],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "devcontainer",
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "npm install",
+  "remoteUser": "node"
+}
