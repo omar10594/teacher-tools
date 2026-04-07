@@ -1,7 +1,20 @@
 import { NextResponse } from "next/server";
+import { AUTH_SESSION_COOKIE, getSessionFromToken } from "@/lib/auth";
 import { weeklyPlanSchema } from "@/lib/schemas";
 
 export async function POST(request: Request) {
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const sessionCookie = cookieHeader
+    .split(";")
+    .map((value) => value.trim())
+    .find((value) => value.startsWith(`${AUTH_SESSION_COOKIE}=`))
+    ?.slice(AUTH_SESSION_COOKIE.length + 1);
+
+  const session = getSessionFromToken(sessionCookie);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
   const parseResult = weeklyPlanSchema.safeParse(await request.json());
   if (!parseResult.success) {
     return NextResponse.json(

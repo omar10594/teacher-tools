@@ -29,9 +29,29 @@ Use .env.local for local development.
 
 Required values:
 - N8N_WEBHOOK_URL: webhook endpoint that receives startDate and weekNumber.
+- AUTH_SECRET: random secret used to sign auth tokens.
+- AUTH_ALLOWED_EMAILS: comma-separated allowlist of emails that can access private tools.
+- RESEND_API_KEY: API key for sending magic links by email.
+- AUTH_FROM_EMAIL: sender used for magic-link emails.
 
 Optional:
 - NEXT_PUBLIC_APP_URL: public URL for future callback links.
+
+## Private Login (Magic Link)
+
+The app supports private access without registration via email magic links.
+
+How it works:
+- Public pages stay accessible.
+- Routes under /tools are private.
+- /api/weekly-plan rejects requests without a valid session.
+- Login starts at /login and sends a magic link email.
+
+Required setup:
+1. Configure AUTH_SECRET with a long random value.
+2. Configure AUTH_ALLOWED_EMAILS.
+3. Configure RESEND_API_KEY and AUTH_FROM_EMAIL.
+4. Set NEXT_PUBLIC_APP_URL to your public URL in production.
 
 ## Self-hosted with Docker Compose
 

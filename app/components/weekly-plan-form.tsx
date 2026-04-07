@@ -33,6 +33,11 @@ export function WeeklyPlanForm() {
       const data = (await response.json().catch(() => null)) as
         | { error?: string }
         | null;
+      if (response.status === 401) {
+        toast.error("Your session expired. Please login again.");
+        window.location.assign("/login");
+        return;
+      }
       const message = data?.error ?? "Could not send the weekly plan request.";
       toast.error(message);
       return;
